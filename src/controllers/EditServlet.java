@@ -37,10 +37,10 @@ public class EditServlet extends HttpServlet {
 
         em.close();
 
-        request.setAttribute("message", m);
+        request.setAttribute("task", m);
         request.setAttribute("_token", request.getSession().getId());
 
-        request.getSession().setAttribute("message_id", m.getId());
+        request.getSession().setAttribute("task_id", m.getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/edit.jsp");
         rd.forward(request, response);

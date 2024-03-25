@@ -39,7 +39,7 @@ public class UpdateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
 
-            Task m = em.find(Task.class, (Integer)(request.getSession().getAttribute("message_id")));
+            Task m = em.find(Task.class, (Integer)(request.getSession().getAttribute("task_id")));
 
 
             String title = request.getParameter("title");
@@ -57,7 +57,7 @@ public class UpdateServlet extends HttpServlet {
 
                 // フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("message", m);
+                request.setAttribute("task", m);
                 request.setAttribute("errors", errors);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/edit.jsp");
@@ -70,7 +70,7 @@ public class UpdateServlet extends HttpServlet {
             em.close();
 
 
-            request.getSession().removeAttribute("message_id");
+            request.getSession().removeAttribute("task_id");
 
 
             response.sendRedirect(request.getContextPath() + "/index");
